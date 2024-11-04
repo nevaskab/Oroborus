@@ -4,7 +4,7 @@
         <body>
             <div class= "container mt-5">
                 <header>
-                    <h1 class="text-center">Resultado do Signo</h1>
+                    <h1 class="titulo">Resultado do Signo</h1>
                 </header>
 
                 <?php
@@ -21,7 +21,12 @@
                             $dataNascimento = DateTime::createFromFormat('d/m', "$dia/$mes");
 
                             if(($dataNascimento >= $dataInicio && $dataNascimento <= $dataFim) || ($signo->dataInicio == '22/12' && ($dataNascimento >= $dataInicio || $dataNascimento <= $dataFim))){
-                                return ["signo" => (string)$signo->signoNome, "descricao" => (string)$signo->descricao];
+                                return [
+                                    "signo" => (string)$signo->signoNome,
+                                    "descricao" => (string)$signo->descricao,
+                                    "imagem1" => (string)$signo->imagem1,
+                                    "imagem2" => (string)$signo->imagem2
+                                ];
                             }
                         }
                         return null;
@@ -30,16 +35,18 @@
                     $signo = obterSigno((int)$dia, (int)$mes, $signos);
 
                     if ($signo) {
-                        echo "<div class='alert alert-info text-center'>";
+                        echo "<div class='resultado'>";
+                        echo "<div class='corpo'>";
                         echo "<h2>Seu signo: " . $signo["signo"] . "</h2>";
+                        echo "<img class='imagem1' src='" . $signo["imagem1"] . "' alt='" . $signo["signo"] . "'>";
+                        echo "</div>";
                         echo "<p>" . $signo["descricao"] . "</p>";
-                        echo "<img class='imagem1' src='" . realpath($signo["imagem1"]) . "' alt='" . $signo["signo"] . "'>";
-                        echo "<img class='imagem2' src='" . realpath($signo["imagem2"]) . "' alt='" . $signo["signo"] . "'>";
+                        echo "<img class='imagem2' src='" . $signo["imagem2"] . "' alt='" . $signo["signo"] . "'>";
                         echo "</div>";
                     }
 
                     else{
-                        echo "<div class= 'alert alert-warning text-center'>Não foi possível determinar o signo.</div>";
+                        echo "<div class= 'erro'>Não foi possível determinar o signo.</div>";
                     }
                 ?>
             </div>

@@ -5,10 +5,11 @@ body{
     align-items: center;
     background-image: url("../imgs/galaxy_background.webp");
     font-family: "Playwrite GB S", cursive;
+    text-align: justify;
     
     .container{
         display: flex;
-        justify-items: center;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
         border-radius: 8px;
@@ -21,6 +22,24 @@ body{
             margin: auto;
             background-color: rgba(10, 58, 129, 0.459);
             border-color: black;
+        }
+
+        .corpo{
+            display: flex;
+            margin: 50px;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .imagem1{
+            height: 50px;
+        }
+
+        .imagem2{
+            display: block;
+            height: 100px;
+            margin-left: auto;
         }
     }
 
